@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">QuizApp</string>
+    <string name="Question1">1) What is the capital of Montenegro?</string>
+    <string name="answer1.a">Podgorica</string>
+    <string name="answer1.b">Vienna</string>
+    <string name="answer1.c">Moscow</string>
+    <string name="Question2">2) What is the capital of Austria?</string>
+    <string name="Question3">3) Which of the following social networks are displayed in the picture above? </string>
+    <string name="Question4">What is the capital of Britain?</string>
+</resources>
