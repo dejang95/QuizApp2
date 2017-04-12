@@ -1,16 +1,18 @@
 package com.example.android.quizapp;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
     int points = 0;
-    int maxPoints = 4;
+    int maxPoints = 5;
     boolean correctAnswer = false;
 
     @Override
@@ -27,6 +29,15 @@ public class MainActivity extends AppCompatActivity {
         points += checkThirdQuestion();
         if (checkFourthQuestion()) ++points;
         if (points == maxPoints)setContentView(R.layout.testuestion);
+        else {
+
+            Context context = getApplicationContext();
+            CharSequence text = " You have won " + String.valueOf(points) + " points! :)";
+            int duration = Toast.LENGTH_LONG;
+
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.show();
+        }
     }
 
     public boolean checkFirstQuestion () {
@@ -45,13 +56,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public int checkThirdQuestion () {
-        CheckBox firstCorrect = (CheckBox) findViewById(R.id.YouTube);
-        CheckBox secondCorrect = (CheckBox) findViewById(R.id.GooglePlus);
-        boolean firstChecked = firstCorrect.isChecked();
-        boolean secondChecked = secondCorrect.isChecked();
-        if (firstChecked && secondChecked) return 2;
-        else if (!firstChecked && !secondChecked) return 0;
-        else return 1;
+        CheckBox firstCheckbox = (CheckBox) findViewById(R.id.YouTube);
+        CheckBox secondCheckbox = (CheckBox) findViewById(R.id.GooglePlus);
+        CheckBox thirdCheckbox = (CheckBox) findViewById(R.id.Reddit);
+        boolean firstChecked = firstCheckbox.isChecked();
+        boolean secondChecked = secondCheckbox.isChecked();
+        boolean thirdChecked = thirdCheckbox.isChecked();
+        if (!thirdChecked) {
+            if (firstChecked && secondChecked) return 2;
+            else if (!firstChecked && !secondChecked) return 0;
+            else return 1;
+        } else return 0;
     }
 
     public boolean checkFourthQuestion () {
